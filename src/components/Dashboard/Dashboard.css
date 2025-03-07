@@ -1,0 +1,121 @@
+/* src/components/Dashboard/Dashboard.css */
+.dashboard {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dashboard-header h1 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+}
+
+.add-friend-btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-friend-btn:hover {
+  background-color: var(--dark-color);
+}
+
+.friends-container {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 20px;
+}
+
+.friends-container h2 {
+  margin-bottom: 20px;
+  color: var(--dark-color);
+}
+
+.friends-list {
+  display: grid;
+  gap: 15px;
+}
+
+.friend-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #ccc;
+}
+
+.friend-info h3 {
+  margin: 0 0 5px 0;
+  color: var(--dark-color);
+}
+
+.days-count {
+  font-weight: 500;
+  margin: 0 0 5px 0;
+}
+
+.frequency {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.friend-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.view-profile {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: var(--light-color);
+  color: var(--primary-color);
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.view-profile:hover {
+  background-color: #e8e2f7;
+}
+
+.no-friends {
+  text-align: center;
+  padding: 30px;
+  color: #888;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .friend-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .friend-actions {
+    margin-top: 15px;
+    width: 100%;
+  }
+  
+  .friend-actions button,
+  .view-profile {
+    flex: 1;
+    text-align: center;
+  }
+}
