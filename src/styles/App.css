@@ -1,0 +1,89 @@
+:root {
+  --primary-color: #5e42a6;
+  --secondary-color: #7a5fcc;
+  --dark-color: #3d2c76;
+  --light-color: #f4f1fb;
+  --warning-color: #ff9800;
+  --danger-color: #f44336;
+  --success-color: #4caf50;
+  --gray-color: #f0f0f0;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-container {
+  display: flex;
+  flex: 1;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+button {
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--dark-color);
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 8px 12px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+/* Estado de contacto */
+.atrasado {
+  border-left: 4px solid var(--danger-color) !important;
+}
+
+.pronto {
+  border-left: 4px solid var(--warning-color) !important;
+}
+
+.ok {
+  border-left: 4px solid var(--success-color) !important;
+}
