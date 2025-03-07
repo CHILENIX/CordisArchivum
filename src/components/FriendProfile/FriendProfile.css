@@ -1,0 +1,202 @@
+/* src/components/FriendProfile/FriendProfile.css */
+.friend-profile {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.back-btn {
+  background-color: var(--light-color);
+  color: var(--primary-color);
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  margin-right: 20px;
+  transition: background-color 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #e8e2f7;
+}
+
+.profile-header h1 {
+  margin: 0;
+  color: var(--primary-color);
+}
+
+.profile-content {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 20px;
+}
+
+.profile-image {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--light-color);
+}
+
+.default-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: bold;
+  border: 4px solid var(--light-color);
+}
+
+.contact-status {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.status-card {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 20px;
+}
+
+.status-card h3 {
+  margin-top: 0;
+  color: var(--dark-color);
+  margin-bottom: 15px;
+}
+
+.days-count, .days-until {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.contact-btn {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contact-btn:hover {
+  background-color: var(--dark-color);
+}
+
+.friend-details {
+  grid-column: 2;
+  grid-row: 2;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 20px;
+}
+
+.friend-details h3 {
+  color: var(--dark-color);
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.friend-details p {
+  margin-bottom: 10px;
+}
+
+.notes-section {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: var(--light-color);
+  border-radius: var(--border-radius);
+  min-height: 100px;
+}
+
+.profile-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.edit-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.delete-btn {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+.confirm-delete {
+  grid-column: 1 / -1;
+  background-color: #ffebee;
+  border: 1px solid var(--danger-color);
+  border-radius: var(--border-radius);
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.confirm-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.confirm-delete-btn {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.confirm-delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+@media (max-width: 768px) {
+  .profile-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .profile-image {
+    grid-column: 1;
+    grid-row: 1;
+    margin-bottom: 20px;
+  }
+  
+  .contact-status {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+  .friend-details {
+    grid-column: 1;
+    grid-row: 3;
+  }
+}
