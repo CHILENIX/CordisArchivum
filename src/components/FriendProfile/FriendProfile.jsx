@@ -1,9 +1,9 @@
 // src/components/FriendProfile/FriendProfile.jsx
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './FriendProfile.css';
 
-function FriendProfile({ friends, updateLastContact }) {
+function FriendProfile({ friends, updateLastContact, deleteFriend, updateFriend }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const friendId = parseInt(id);
@@ -11,7 +11,24 @@ function FriendProfile({ friends, updateLastContact }) {
   
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
-  const [formData, setFormData] = useState(friend || {});
+  const [formData, setFormData] = useState({
+    name: '',
+    contactFrequency: 14,
+    email: '',
+    phone: '',
+    birthday: '',
+    notes: '',
+    profilePic: ''
+  });
+
+  useEffect(() => {
+    if (friend) {
+      setFormData({
+        ...friend,
+        birthday: friend.birthday || ''
+      });
+    }
+  }, [friend]);
 
   if (!friend) {
     return (
@@ -45,14 +62,18 @@ function FriendProfile({ friends, updateLastContact }) {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    // Aquí iría la lógica para actualizar el amigo
-    // Implementación pendiente
+    updateFriend({
+      ...formData,
+      id: friendId,
+      // Make sure these fields are preserved
+      lastContact: friend.lastContact,
+      nextContactDue: friend.nextContactDue
+    });
     setShowEditForm(false);
   };
 
   const handleDelete = () => {
-    // Aquí iría la lógica para eliminar el amigo
-    // Implementación pendiente
+    deleteFriend(friendId);
     navigate('/');
   };
 
@@ -140,12 +161,99 @@ function FriendProfile({ friends, updateLastContact }) {
           )}
         </div>
       ) : (
-        <form className="edit-form" onSubmit={handleUpdate}>
-          {/* Aquí iría el formulario de edición, similar al AddFriendForm */}
-          <button type="button" onClick={() => setShowEditForm(false)}>
-            Cancelar
-          </button>
-          <button type="submit">Guardar cambios</button>
+        <form className="edit-form add-friend-form" onSubmit={handleUpdate}>
+          <h2>Editar perfil de {friend.name}</h2>
+          
+          <div className="form-group">
+            <label htmlFor="name">Nombre*</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="contactFrequency">Frecuencia de contacto (días)*</label>
+            <input
+              type="number"
+              id="contactFrequency"
+              name="contactFrequency"
+              min="1"
+              max="365"
+              value={formData.contactFrequency}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="phone">Teléfono</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="birthday">Cumpleaños</label>
+            <input
+              type="date"
+              id="birthday"
+              name="birthday"
+              value={formData.birthday}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="notes">Notas</label>
+            <textarea
+              id="notes"
+              name="notes"
+              value={formData.notes}
+              onChange={handleChange}
+              rows="3"
+            ></textarea>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="profilePic">URL de foto de perfil</label>
+            <input
+              type="url"
+              id="profilePic"
+              name="profilePic"
+              value={formData.profilePic}
+              onChange={handleChange}
+              placeholder="https://example.com/photo.jpg"
+            />
+          </div>
+
+          <div className="form-buttons">
+            <button type="button" onClick={() => setShowEditForm(false)} className="cancel-btn">
+              Cancelar
+            </button>
+            <button type="submit" className="submit-btn">
+              Guardar cambios
+            </button>
+          </div>
         </form>
       )}
     </div>
