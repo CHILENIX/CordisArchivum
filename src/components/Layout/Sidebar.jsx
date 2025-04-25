@@ -1,12 +1,19 @@
 // src/components/Layout/Sidebar.jsx
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
 
-function Sidebar({ friends }) {
+function Sidebar({ friends, setShowAddForm }) {
+  const navigate = useNavigate();
+  
   // Ordenar amigos alfabéticamente por nombre
   const sortedFriends = [...friends].sort((a, b) => 
     a.name.localeCompare(b.name)
   );
+
+  const handleAddFriend = () => {
+    navigate('/'); // Navegar a la página principal
+    setTimeout(() => setShowAddForm(true), 100); // Breve retraso para asegurar que la navegación se complete
+  };
 
   return (
     <aside className="sidebar">
@@ -42,9 +49,9 @@ function Sidebar({ friends }) {
         )}
       </div>
       <div className="sidebar-footer">
-        <Link to="/" className="add-friend-sidebar">
+        <button onClick={handleAddFriend} className="add-friend-sidebar">
           + Añadir nuevo contacto
-        </Link>
+        </button>
       </div>
     </aside>
   );
