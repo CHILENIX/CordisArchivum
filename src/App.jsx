@@ -18,6 +18,9 @@ function App() {
       return [];
     }
   });
+  
+  // Estado para controlar la visibilidad del formulario
+  const [showAddForm, setShowAddForm] = useState(false);
 
   useEffect(() => {
     try {
@@ -56,12 +59,10 @@ function App() {
     return date.toISOString();
   };
 
-  // Add delete functionality
   const deleteFriend = (friendId) => {
     setFriends(friends.filter(friend => friend.id !== friendId));
   };
 
-  // Add update functionality
   const updateFriend = (updatedFriend) => {
     setFriends(friends.map(friend => 
       friend.id === updatedFriend.id ? updatedFriend : friend
@@ -74,16 +75,29 @@ function App() {
         <div className="app">
           <Header />
           <div className="main-container">
-            <Sidebar friends={friends} />
+            <Sidebar 
+              friends={friends}
+              setShowAddForm={setShowAddForm} // Pasar la función para controlar el estado
+            />
             <main className="content">
               <Routes>
-                <Route path="/" element={<Dashboard friends={friends} updateLastContact={updateLastContact} addFriend={addFriend} />} />
-                <Route path="/friend/:id" element={<FriendProfile 
-                  friends={friends} 
-                  updateLastContact={updateLastContact}
-                  deleteFriend={deleteFriend}
-                  updateFriend={updateFriend}
-                />} />
+                <Route path="/" element={
+                  <Dashboard 
+                    friends={friends} 
+                    updateLastContact={updateLastContact} 
+                    addFriend={addFriend}
+                    showAddForm={showAddForm}
+                    setShowAddForm={setShowAddForm}
+                  />
+                } />
+                <Route path="/friend/:id" element={
+                  <FriendProfile 
+                    friends={friends} 
+                    updateLastContact={updateLastContact}
+                    deleteFriend={deleteFriend}
+                    updateFriend={updateFriend}
+                  />
+                } />
               </Routes>
             </main>
           </div>
