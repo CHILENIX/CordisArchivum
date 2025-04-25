@@ -1,11 +1,9 @@
 // src/components/Dashboard/Dashboard.jsx
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AddFriendForm from './AddFriendForm';
 import './Dashboard.css';
 
-function Dashboard({ friends, updateLastContact, addFriend }) {
-  const [showAddForm, setShowAddForm] = useState(false);
+function Dashboard({ friends, updateLastContact, addFriend, showAddForm, setShowAddForm }) {
   
   // Ordenar amigos por urgencia (los que están más cerca o pasados de la fecha de contacto)
   const sortedFriends = [...friends].sort((a, b) => {
